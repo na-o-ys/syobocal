@@ -2,14 +2,12 @@ module Syobocal
   module DB
     module Object
 
-      class ChannelGroup < Base
-        attr_reader :ch_gid, :name
+      class ChannelGroup
+        extend XMLMapper 
+        map attr: :ch_gid, xpath: "ChGID", type: :int
+        map attr: :name,   xpath: "ChGroupName"
 
-        @mappings = [
-          [:@ch_gid, "ChGID", :int],
-          [:@name, "ChGroupName"] ].freeze
-
-        @path_to_elements = "ChGroupLookupResponse/ChGroupItems/ChGroupItem".freeze
+        root_node "ChGroupLookupResponse/ChGroupItems/ChGroupItem"
       end
 
     end

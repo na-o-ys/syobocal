@@ -2,20 +2,17 @@ module Syobocal
   module DB
     module Object
 
-      class Title < Base
-        attr_reader :title, :subtitles, :first_year, :first_month, :first_finished_year, :first_finished_month
+      class Title
+        extend XMLMapper 
+        map attr: :title,                xpath: "Title"
+        map attr: :first_year,           xpath: "FirstYear",     type: :int
+        map attr: :first_month,          xpath: "FirstMonth",    type: :int
+        map attr: :first_finished_year,  xpath: "FirstEndYear",  type: :int
+        map attr: :first_finished_month, xpath: "FirstEndMonth", type: :int
+        map attr: :subtitles_raw,        xpath: "SubTitles"
+        map attr: :category,             xpath: "Cat",           type: :int
 
-        @mappings = [
-          [:@title, "Title"],
-          [:@first_year, "FirstYear", :int],
-          [:@first_month, "FirstMonth", :int],
-          [:@first_finished_year, "FirstEndYear", :int],
-          [:@first_finished_month, "FirstEndMonth", :int],
-          [:@subtitles_raw, "SubTitles"],
-          [:@category, "Cat", :int]
-        ].freeze
-
-        @path_to_elements = "TitleLookupResponse/TitleItems/TitleItem".freeze
+        root_node "TitleLookupResponse/TitleItems/TitleItem"
 
         def subtitles
           return @subtitles if @subtitles

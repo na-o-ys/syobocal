@@ -1,4 +1,3 @@
-require 'nokogiri'
 require 'open-uri'
 
 module Syobocal
@@ -10,7 +9,7 @@ module Syobocal
       class << self
         def req(params)
           url = @@api_uri + "?" + params.join("&")
-          Nokogiri.XML(open(url))
+          open(url)
         end
       end
 

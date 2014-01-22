@@ -22,7 +22,7 @@ module Syobocal
 
       xml = APIRequest.req(params)
 
-      Object::Title.parse_xml(xml)
+      Object::Title.load(xml)
     end
 
     def fetch_programs(tid: nil, chid: nil, range_from: nil, range_to: nil, count: nil, lastupdate_from: nil, lastupdate_to: nil, pid: nil)
@@ -44,7 +44,7 @@ module Syobocal
 
       xml = APIRequest.req(params)
 
-      Object::Program.parse_xml(xml)
+      Object::Program.load(xml)
     end
 
     def fetch_channels(chid: nil, lastupdate_from: nil, lastupdate_to: nil)
@@ -58,7 +58,7 @@ module Syobocal
 
       xml = APIRequest.req(params)
 
-      Object::Channel.parse_xml(xml)
+      Object::Channel.load(xml)
     end
 
     def fetch_channel_groups(ch_gid: nil, lastupdate_from: nil, lastupdate_to: nil)
@@ -72,7 +72,7 @@ module Syobocal
 
       xml = APIRequest.req(params)
 
-      Object::ChannelGroup.parse_xml(xml)
+      Object::ChannelGroup.load(xml)
     end
 
     private

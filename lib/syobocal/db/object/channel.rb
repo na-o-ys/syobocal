@@ -2,17 +2,15 @@ module Syobocal
   module DB
     module Object
 
-      class Channel < Base
-        attr_reader :chid, :name, :epg_name, :url, :ch_gid
+      class Channel
+        extend XMLMapper 
+        map attr: :chid,     xpath: "ChID", type: :int
+        map attr: :name,     xpath: "ChName"
+        map attr: :epg_name, xpath: "ChiEPGName"
+        map attr: :url,      xpath: "ChURL"
+        map attr: :ch_gid,   xpath: "ChGID", type: :int
 
-        @mappings = [
-          [:@chid, "ChID", :int],
-          [:@name, "ChName"],
-          [:@epg_name, "ChiEPGName"],
-          [:@url, "ChURL"],
-          [:@ch_gid, "ChGID", :int] ].freeze
-
-        @path_to_elements = "ChLookupResponse/ChItems/ChItem".freeze
+        root_node "ChLookupResponse/ChItems/ChItem"
       end
 
     end
