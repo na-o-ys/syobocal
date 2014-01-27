@@ -4,12 +4,12 @@ module Syobocal
 
       class Program
         extend XMLMapper 
-        map attr: :pid,            xpath: "PID",    type: :int
-        map attr: :tid,            xpath: "TID",    type: :int
-        map attr: :start_datetime, xpath: "StTime", type: :datetime
-        map attr: :end_datetime,   xpath: "EdTime", type: :datetime
-        map attr: :count,          xpath: "Count",  type: :int
-        map attr: :chid,           xpath: "ChID",   type: :int
+        map :pid,            "PID",    :int
+        map :tid,            "TID",    :int
+        map :start_datetime, "StTime", :datetime
+        map :end_datetime,   "EdTime", :datetime
+        map :count,          "Count",  :int
+        map :chid,           "ChID",   :int
 
         root_node "ProgLookupResponse/ProgItems/ProgItem"
       end

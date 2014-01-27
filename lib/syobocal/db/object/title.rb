@@ -4,13 +4,13 @@ module Syobocal
 
       class Title
         extend XMLMapper 
-        map attr: :title,                xpath: "Title"
-        map attr: :first_year,           xpath: "FirstYear",     type: :int
-        map attr: :first_month,          xpath: "FirstMonth",    type: :int
-        map attr: :first_finished_year,  xpath: "FirstEndYear",  type: :int
-        map attr: :first_finished_month, xpath: "FirstEndMonth", type: :int
-        map attr: :subtitles_raw,        xpath: "SubTitles"
-        map attr: :category,             xpath: "Cat",           type: :int
+        map :title,                "Title"
+        map :first_year,           "FirstYear",     :int
+        map :first_month,          "FirstMonth",    :int
+        map :first_finished_year,  "FirstEndYear",  :int
+        map :first_finished_month, "FirstEndMonth", :int
+        map :subtitles_raw,        "SubTitles"
+        map :category,             "Cat",           :int
 
         root_node "TitleLookupResponse/TitleItems/TitleItem"
 
