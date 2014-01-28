@@ -18,7 +18,7 @@ module Syobocal
       end
 
       xml = APIRequest.req(params)
-      Object::Title.load(xml)
+      Object::Title.eager_load(xml)
     end
 
     def fetch_programs(tid: nil, chid: nil, range_from: nil, range_to: nil, count: nil, lastupdate_from: nil, lastupdate_to: nil, pid: nil)
@@ -38,7 +38,7 @@ module Syobocal
       end
 
       xml = APIRequest.req(params)
-      Object::Program.load(xml)
+      Object::Program.eager_load(xml)
     end
 
     def fetch_channels(chid: nil, lastupdate_from: nil, lastupdate_to: nil)
@@ -67,26 +67,24 @@ module Syobocal
       Object::ChannelGroup.load(xml)
     end
 
-    class << self
-      private
-      def format_from_to(from, to)
-        format_datetime(from) + "-" + format_datetime(to)
-      end
+    private
+    def format_from_to(from, to)
+      format_datetime(from) + "-" + format_datetime(to)
+    end
 
-      def format_datetime(datetime)
-        datetime ? datetime.strftime("%Y%m%d_%H%M%S") : ""
-      end
+    def format_datetime(datetime)
+      datetime ? datetime.strftime("%Y%m%d_%H%M%S") : ""
+    end
 
-      def comma_separated_str(integer_or_integers)
-        if integer_or_integers.is_a? Integer
-          return integer_or_integers.to_s
-        else
-          array = []
-          integer_or_integers.each do |i|
-            array << i.to_s
-          end
-          return array.join(",")
+    def comma_separated_str(integer_or_integers)
+      if integer_or_integers.is_a? Integer
+        return integer_or_integers.to_s
+      else
+        array = []
+        integer_or_integers.each do |i|
+          array << i.to_s
         end
+        return array.join(",")
       end
     end
 
