@@ -4,6 +4,7 @@ module Syobocal
 
       class Title
         extend XMLMapper 
+        map :id,                   "TID",           :int
         map :title,                "Title"
         map :first_year,           "FirstYear",     :int
         map :first_month,          "FirstMonth",    :int
@@ -11,6 +12,7 @@ module Syobocal
         map :first_finished_month, "FirstEndMonth", :int
         map :subtitles_raw,        "SubTitles"
         map :category,             "Cat",           :int
+        map :last_update,          "LastUpdate",    :datetime
 
         root_node "TitleLookupResponse/TitleItems/TitleItem"
 

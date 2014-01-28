@@ -4,7 +4,7 @@ module Syobocal
 
       class ChannelGroup
         extend XMLMapper 
-        map :ch_gid, "ChGID",      :int
+        map :gid,    "ChGID",      :int
         map :name,   "ChGroupName"
 
         root_node "ChGroupLookupResponse/ChGroupItems/ChGroupItem"
